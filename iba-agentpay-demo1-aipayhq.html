@@ -1,0 +1,986 @@
+<!-- wp:html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IBA AI Pay HQ — Agentic Commerce Authorization</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #000508;
+  --deep: #010a10;
+  --teal: #00e5cc;
+  --teal-glow: rgba(0,229,204,0.12);
+  --amber: #ffaa00;
+  --amber-glow: rgba(255,170,0,0.15);
+  --red: #ff2244;
+  --red-glow: rgba(255,34,68,0.15);
+  --green: #00ff88;
+  --green-glow: rgba(0,255,136,0.12);
+  --white: #d8eef0;
+  --mid: #3a6068;
+  --dim: #0d2025;
+  --panel: rgba(1,10,16,0.94);
+  --border: rgba(0,229,204,0.12);
+  --border-amber: rgba(255,170,0,0.15);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--void);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── SCANLINES ── */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,229,204,0.012) 2px, rgba(0,229,204,0.012) 4px);
+  pointer-events:none;
+  z-index:999;
+}
+
+/* ── HERO ── */
+.hero {
+  position:relative;
+  z-index:5;
+  padding:60px 24px 40px;
+  text-align:center;
+  border-bottom:1px solid var(--border);
+  background: radial-gradient(ellipse at 50% 0%, rgba(0,229,204,0.05), transparent 60%);
+}
+
+.hero-tag {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.58rem;
+  letter-spacing:5px;
+  color:var(--teal);
+  margin-bottom:16px;
+  opacity:0;
+  animation:riseIn 0.8s 0.2s forwards;
+}
+
+.hero-title {
+  font-family:'Orbitron',monospace;
+  font-size:clamp(2.5rem,7vw,5.5rem);
+  font-weight:900;
+  line-height:0.95;
+  margin-bottom:10px;
+  opacity:0;
+  animation:riseIn 0.8s 0.4s forwards;
+}
+
+.hero-title .t { color:var(--teal); }
+.hero-title .d { color:var(--mid); }
+
+.hero-sub {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.65rem;
+  letter-spacing:4px;
+  color:var(--mid);
+  margin-bottom:28px;
+  opacity:0;
+  animation:riseIn 0.8s 0.6s forwards;
+}
+
+.hero-thesis {
+  max-width:700px;
+  margin:0 auto;
+  opacity:0;
+  animation:riseIn 0.8s 0.8s forwards;
+}
+
+.hero-thesis p {
+  font-size:1rem;
+  font-weight:300;
+  line-height:1.8;
+  color:var(--mid);
+}
+
+.hero-thesis p strong { color:var(--white); font-weight:600; }
+.hero-thesis p em { color:var(--teal); font-style:normal; }
+
+/* ── MAIN ── */
+.main {
+  max-width:1300px;
+  margin:0 auto;
+  padding:32px 16px 60px;
+  position:relative;
+  z-index:5;
+}
+
+/* ── CERT PANEL ── */
+.cert-master {
+  background:var(--panel);
+  border:1px solid var(--teal);
+  border-top:3px solid var(--teal);
+  padding:20px 24px;
+  margin-bottom:20px;
+  box-shadow:0 0 40px rgba(0,229,204,0.06);
+}
+
+.cm-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.cm-title {
+  font-family:'Orbitron',monospace;
+  font-size:0.72rem;
+  font-weight:700;
+  letter-spacing:3px;
+  color:var(--teal);
+}
+
+.cm-status {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.58rem;
+  letter-spacing:2px;
+  padding:5px 12px;
+  border:1px solid var(--teal);
+  color:var(--teal);
+  animation:pulseBorder 2s infinite;
+}
+
+.cert-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.cert-field {
+  background:rgba(0,229,204,0.03);
+  border:1px solid var(--border);
+  padding:10px 12px;
+}
+
+.cf-label {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.48rem;
+  letter-spacing:2px;
+  color:var(--mid);
+  margin-bottom:6px;
+  display:block;
+}
+
+.cf-value {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.68rem;
+  color:var(--teal);
+  line-height:1.4;
+}
+
+.cf-value.amber { color:var(--amber); }
+.cf-value.green { color:var(--green); }
+.cf-value.red   { color:var(--red); }
+
+.cert-limits {
+  background:rgba(255,34,68,0.05);
+  border:1px solid rgba(255,34,68,0.15);
+  border-left:3px solid var(--red);
+  padding:10px 14px;
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.6rem;
+  color:var(--mid);
+  line-height:1.7;
+}
+
+.cert-limits span { color:var(--red); }
+
+/* ── TRADING FLOOR ── */
+.floor-grid {
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:16px;
+  margin-bottom:16px;
+}
+
+/* WALLET */
+.wallet-panel {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-top:3px solid var(--amber);
+  overflow:hidden;
+}
+
+.wp-header {
+  padding:14px 18px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(255,170,0,0.04);
+}
+
+.wp-title {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.6rem;
+  letter-spacing:3px;
+  color:var(--amber);
+}
+
+.wp-status {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.55rem;
+  color:rgba(255,170,0,0.5);
+}
+
+/* Balance display */
+.balance-display {
+  padding:24px 20px 16px;
+  border-bottom:1px solid var(--border);
+  text-align:center;
+}
+
+.bd-label {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.52rem;
+  letter-spacing:3px;
+  color:var(--mid);
+  margin-bottom:8px;
+}
+
+.bd-amount {
+  font-family:'Orbitron',monospace;
+  font-size:2.2rem;
+  font-weight:900;
+  color:var(--amber);
+  line-height:1;
+  margin-bottom:4px;
+}
+
+.bd-sub {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.52rem;
+  color:var(--mid);
+}
+
+/* Payment queue */
+.payment-queue {
+  padding:14px 18px;
+}
+
+.pq-label {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.52rem;
+  letter-spacing:3px;
+  color:var(--mid);
+  margin-bottom:10px;
+}
+
+.payment-item {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:8px 0;
+  border-bottom:1px solid rgba(0,229,204,0.05);
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.6rem;
+  animation:rowIn 0.3s ease;
+}
+
+.pi-merchant { color:var(--white); flex:1; }
+.pi-amount { color:var(--amber); margin:0 12px; }
+.pi-status { font-size:0.52rem; font-weight:700; }
+.pi-status.ok  { color:var(--green); }
+.pi-status.bad { color:var(--red); }
+
+/* CANVAS CHART */
+.chart-panel {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-top:3px solid var(--teal);
+  overflow:hidden;
+}
+
+.chart-header {
+  padding:14px 18px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,229,204,0.04);
+}
+
+.ch-title {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.6rem;
+  letter-spacing:3px;
+  color:var(--teal);
+}
+
+.ch-stats {
+  display:flex;
+  gap:16px;
+}
+
+.ch-stat {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.55rem;
+  color:var(--mid);
+  text-align:center;
+}
+
+.ch-stat span {
+  display:block;
+  font-size:1rem;
+  font-weight:700;
+  margin-bottom:2px;
+}
+
+.ch-stat span.green { color:var(--green); }
+.ch-stat span.red   { color:var(--red); }
+.ch-stat span.teal  { color:var(--teal); }
+
+#pay-canvas {
+  width:100%;
+  height:240px;
+  display:block;
+}
+
+/* AGENT QUEUE */
+.agent-queue {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-top:3px solid var(--green);
+  overflow:hidden;
+}
+
+.aq-header {
+  padding:14px 18px;
+  border-bottom:1px solid var(--border);
+  background:rgba(0,255,136,0.04);
+}
+
+.aq-title {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.6rem;
+  letter-spacing:3px;
+  color:var(--green);
+}
+
+.aq-attempts {
+  max-height:280px;
+  overflow-y:auto;
+}
+
+.aq-row {
+  display:grid;
+  grid-template-columns:60px 1fr 70px 65px 70px;
+  gap:8px;
+  padding:8px 18px;
+  border-bottom:1px solid rgba(0,229,204,0.04);
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.56rem;
+  align-items:center;
+  animation:rowIn 0.3s ease;
+}
+
+.aq-row.blocked { background:rgba(255,34,68,0.04); border-left:2px solid var(--red); }
+
+.ar-time  { color:var(--mid); }
+.ar-merch { color:var(--white); }
+.ar-amt   { color:var(--amber); }
+.ar-cat   { color:var(--teal); }
+.ar-ok    { color:var(--green); font-weight:700; }
+.ar-no    { color:var(--red);   font-weight:700; }
+
+/* CONTROLS */
+.controls {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.ctrl-btn {
+  padding:12px;
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--teal);
+  font-family:'Orbitron',monospace;
+  font-size:0.6rem;
+  font-weight:700;
+  letter-spacing:2px;
+  cursor:pointer;
+  transition:all 0.2s;
+}
+
+.ctrl-btn:hover { background:var(--teal-glow); border-color:var(--teal); }
+.ctrl-btn.red-btn { border-color:rgba(255,34,68,0.3); color:rgba(255,34,68,0.7); }
+.ctrl-btn.red-btn:hover { background:var(--red-glow); border-color:var(--red); color:var(--red); }
+
+/* MASTER STATS */
+.master-stats {
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:16px;
+  margin-bottom:16px;
+}
+
+.ms-cell { text-align:center; }
+
+.ms-n {
+  font-family:'Orbitron',monospace;
+  font-size:1.6rem;
+  font-weight:900;
+  line-height:1;
+  margin-bottom:4px;
+}
+
+.ms-n.teal  { color:var(--teal); }
+.ms-n.green { color:var(--green); }
+.ms-n.red   { color:var(--red); }
+.ms-n.amber { color:var(--amber); }
+
+.ms-l {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.48rem;
+  letter-spacing:1px;
+  color:var(--mid);
+}
+
+/* SNAP-BACK */
+.sb-overlay {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(255,34,68,0.06);
+  pointer-events:none;
+  z-index:900;
+}
+
+.sb-modal {
+  display:none;
+  position:fixed;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  z-index:1000;
+  background:#000a08;
+  border:1px solid var(--red);
+  box-shadow:0 0 80px rgba(255,34,68,0.25);
+  padding:32px;
+  max-width:520px;
+  width:92%;
+  text-align:center;
+}
+
+.sm-tag {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.52rem;
+  letter-spacing:4px;
+  color:var(--red);
+  margin-bottom:12px;
+}
+
+.sm-title {
+  font-family:'Orbitron',monospace;
+  font-size:1.3rem;
+  font-weight:700;
+  color:var(--red);
+  margin-bottom:16px;
+}
+
+.sm-body {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.6rem;
+  color:var(--mid);
+  line-height:1.8;
+  text-align:left;
+  padding:12px;
+  background:rgba(255,34,68,0.05);
+  border:1px solid rgba(255,34,68,0.2);
+  margin-bottom:14px;
+  white-space:pre-line;
+}
+
+.sm-verdict {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.6rem;
+  color:var(--green);
+  padding:10px;
+  background:rgba(0,255,136,0.05);
+  border:1px solid rgba(0,255,136,0.15);
+  margin-bottom:14px;
+  text-align:left;
+  line-height:1.7;
+}
+
+.sm-close {
+  font-family:'Orbitron',monospace;
+  font-size:0.7rem;
+  font-weight:700;
+  letter-spacing:3px;
+  padding:11px 28px;
+  border:1px solid var(--red);
+  background:transparent;
+  color:var(--red);
+  cursor:pointer;
+  transition:all 0.2s;
+}
+
+.sm-close:hover { background:var(--red); color:var(--void); }
+
+/* FOOTER */
+.footer {
+  position:relative;
+  z-index:5;
+  border-top:1px solid var(--border);
+  padding:32px 16px;
+  text-align:center;
+}
+
+.footer-main {
+  font-family:'Orbitron',monospace;
+  font-size:0.68rem;
+  font-weight:700;
+  letter-spacing:3px;
+  color:var(--teal);
+  margin-bottom:10px;
+}
+
+.footer-creds {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.54rem;
+  color:var(--mid);
+  line-height:2.2;
+  letter-spacing:1px;
+}
+
+.footer-creds span { color:var(--amber); }
+.footer-creds a { color:var(--teal); text-decoration:none; }
+
+/* ANIMATIONS */
+@keyframes riseIn {
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+@keyframes rowIn {
+  from { opacity:0; transform:translateX(-4px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+
+@keyframes pulseBorder {
+  0%,100% { box-shadow:0 0 0 rgba(0,229,204,0); }
+  50%     { box-shadow:0 0 14px rgba(0,229,204,0.25); }
+}
+
+.aq-attempts::-webkit-scrollbar { width:3px; }
+.aq-attempts::-webkit-scrollbar-track { background:var(--void); }
+.aq-attempts::-webkit-scrollbar-thumb { background:var(--teal); }
+
+@media(max-width:900px) {
+  .floor-grid { grid-template-columns:1fr; }
+  .cert-grid  { grid-template-columns:repeat(2,1fr); }
+  .controls   { grid-template-columns:repeat(2,1fr); }
+  .master-stats { grid-template-columns:repeat(3,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">IBA Intent Bound Authorization · AI Pay HQ · Agentic Commerce Authorization</div>
+  <h1 class="hero-title">
+    <span class="d">AI PAY</span><br>
+    <span class="t">HQ</span>
+  </h1>
+  <div class="hero-sub">Every Payment · One Gate · Before the Transaction Fires</div>
+  <div class="hero-thesis">
+    <p>
+      Mastercard Verifiable Intent proves the record <strong>after</strong> execution.<br>
+      IBA Intent Bound Authorization governs <strong>before</strong> the payment fires.<br><br>
+      A signed intent certificate declares the authorized payee, the maximum amount,<br>
+      the permitted categories, and the hard limits — <em>before the agent touches the wallet.</em>
+    </p>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- MASTER STATS -->
+  <div class="master-stats">
+    <div class="ms-cell">
+      <div class="ms-n teal" id="ms-total">0</div>
+      <div class="ms-l">Attempts</div>
+    </div>
+    <div class="ms-cell">
+      <div class="ms-n green" id="ms-cleared">0</div>
+      <div class="ms-l">Cleared</div>
+    </div>
+    <div class="ms-cell">
+      <div class="ms-n red" id="ms-blocked">0</div>
+      <div class="ms-l">Blocked at Gate</div>
+    </div>
+    <div class="ms-cell">
+      <div class="ms-n amber" id="ms-volume">$0</div>
+      <div class="ms-l">Authorized Volume</div>
+    </div>
+    <div class="ms-cell">
+      <div class="ms-n teal" style="font-size:1rem">1.4ms</div>
+      <div class="ms-l">Gate Latency</div>
+    </div>
+  </div>
+
+  <!-- CERT MASTER -->
+  <div class="cert-master">
+    <div class="cm-head">
+      <div class="cm-title">IBA INTENT CERTIFICATE · AI PAY HQ SESSION</div>
+      <div class="cm-status">CERT ENFORCING</div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-field">
+        <span class="cf-label">AUTHORIZED AGENT</span>
+        <div class="cf-value">PAY-AGENT-001 · Session bound</div>
+      </div>
+      <div class="cert-field">
+        <span class="cf-label">MAXIMUM TRANSACTION</span>
+        <div class="cf-value amber">$500.00 per payment</div>
+      </div>
+      <div class="cert-field">
+        <span class="cf-label">DAILY LIMIT</span>
+        <div class="cf-value amber">$2,000.00 total</div>
+      </div>
+      <div class="cert-field">
+        <span class="cf-label">GATE STATUS</span>
+        <div class="cf-value green">ENFORCING · PRE-EXECUTION</div>
+      </div>
+      <div class="cert-field">
+        <span class="cf-label">PERMITTED CATEGORIES</span>
+        <div class="cf-value">Software · SaaS · Cloud · APIs</div>
+      </div>
+      <div class="cert-field">
+        <span class="cf-label">AUTHORIZED PAYEES</span>
+        <div class="cf-value">Declared vendor list only</div>
+      </div>
+      <div class="cert-field">
+        <span class="cf-label">TEMPORAL VALIDITY</span>
+        <div class="cf-value">Session · 60 minutes max</div>
+      </div>
+      <div class="cert-field">
+        <span class="cf-label">HUMAN PRINCIPAL</span>
+        <div class="cf-value">Jeffrey Williams · Signed</div>
+      </div>
+    </div>
+    <div class="cert-limits">
+      <span>HARD LIMITS (CANNOT BE OVERRIDDEN BY ANY INSTRUCTION OR INJECTION):</span>
+      No recurring payments · No international wire transfers · No crypto · No undeclared payees · No above-limit transactions · No credential access
+    </div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <button class="ctrl-btn" onclick="startAgent()">&#9658; RUN PAY AGENT</button>
+    <button class="ctrl-btn red-btn" onclick="fireBlock('overlimit')">&#10005; FIRE OVER-LIMIT</button>
+    <button class="ctrl-btn red-btn" onclick="fireBlock('undeclared')">&#10005; FIRE UNDECLARED PAYEE</button>
+    <button class="ctrl-btn red-btn" onclick="fireBlock('crypto')">&#10005; FIRE CRYPTO ATTEMPT</button>
+  </div>
+
+  <!-- FLOOR -->
+  <div class="floor-grid">
+
+    <!-- CHART + QUEUE -->
+    <div style="display:flex;flex-direction:column;gap:16px;">
+
+      <div class="chart-panel">
+        <div class="chart-header">
+          <div class="ch-title">LIVE PAYMENT GATE · TRANSACTION FLOW</div>
+          <div class="ch-stats">
+            <div class="ch-stat"><span class="green" id="vol-cleared">$0</span>CLEARED</div>
+            <div class="ch-stat"><span class="red" id="vol-blocked">$0</span>BLOCKED VALUE</div>
+            <div class="ch-stat"><span class="teal" id="vol-saved">$0</span>SAVED BY GATE</div>
+          </div>
+        </div>
+        <canvas id="pay-canvas"></canvas>
+      </div>
+
+      <div class="agent-queue">
+        <div class="aq-header">
+          <div class="aq-title">IBA GATE LOG · ALL PAYMENT ATTEMPTS · WITNESSBOUND</div>
+        </div>
+        <div class="aq-attempts" id="aq-stream">
+          <div class="aq-row">
+            <div class="ar-time">--:--:--</div>
+            <div class="ar-merch" style="grid-column:2/5">Deploy agent to begin IBA payment gate monitoring</div>
+            <div class="ar-ok">READY</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- WALLET -->
+    <div style="display:flex;flex-direction:column;gap:16px;">
+
+      <div class="wallet-panel">
+        <div class="wp-header">
+          <div class="wp-title">AGENT WALLET · IBA GOVERNED</div>
+          <div class="wp-status" id="wp-status">STANDBY</div>
+        </div>
+        <div class="balance-display">
+          <div class="bd-label">AVAILABLE BALANCE</div>
+          <div class="bd-amount" id="wallet-balance">$4,850.00</div>
+          <div class="bd-sub">Cert limit: $2,000.00/day · $500.00/tx</div>
+        </div>
+        <div class="payment-queue">
+          <div class="pq-label">RECENT PAYMENTS</div>
+          <div id="payment-list"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-main">IBA INTENT BOUND AUTHORIZATION · AI PAY HQ · AGENTIC COMMERCE</div>
+  <div class="footer-creds">
+    <a href="https://intentbound.com">IntentBound.com</a> · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3a73787b7a53544e5f544e58554f545e14595557">[email&#160;protected]</a><br>
+    <span>Patent GB2603013.0 Pending · PCT 150+ Countries · August 2028</span><br>
+    IETF draft-williams-intent-token-00 · 13 NIST Filings · 9 NCCoE Filings<br>
+    <span>Acquisition enquiries welcome · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dc959e9d9cb5b2a8b9b2a8beb3a9b2b8f2bfb3b1">[email&#160;protected]</a></span>
+  </div>
+</footer>
+
+<!-- SNAP-BACK -->
+<div class="sb-overlay" id="sb-overlay"></div>
+<div class="sb-modal" id="sb-modal">
+  <div class="sm-tag">IBA INTENT BOUND AUTHORIZATION · PAYMENT BLOCKED</div>
+  <div class="sm-title" id="sm-title">TRANSACTION BLOCKED AT GATE</div>
+  <div class="sm-body" id="sm-body"></div>
+  <div class="sm-verdict" id="sm-verdict"></div>
+  <button class="sm-close" onclick="closeModal()">ACKNOWLEDGE · RESUME GOVERNANCE</button>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── CANVAS ────────────────────────────────────────────────────────────────────
+var canvas = document.getElementById('pay-canvas');
+var ctx = canvas.getContext('2d');
+var chartData = [];
+var chartMax = 600;
+
+function resizeCanvas() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = 240;
+}
+
+function drawChart() {
+  var W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+
+  // Background
+  ctx.fillStyle = '#010a10';
+  ctx.fillRect(0,0,W,H);
+
+  // Grid lines
+  ctx.strokeStyle = 'rgba(0,229,204,0.05)';
+  ctx.lineWidth = 0.5;
+  for (var g = 0; g < 5; g++) {
+    var gy = H * g / 4;
+    ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(W,gy); ctx.stroke();
+  }
+
+  if (chartData.length < 2) return;
+
+  // Draw cleared line
+  ctx.beginPath();
+  chartData.forEach(function(d, i) {
+    var x = (i / (chartData.length-1)) * W;
+    var y = H - (d.amount / chartMax) * (H * 0.8) - H*0.1;
+    if (i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  });
+  var lg = ctx.createLinearGradient(0,0,W,0);
+  lg.addColorStop(0,'rgba(0,229,204,0)');
+  lg.addColorStop(0.5,'rgba(0,229,204,0.6)');
+  lg.addColorStop(1,'rgba(0,229,204,0)');
+  ctx.strokeStyle = lg;
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // Data points
+  chartData.forEach(function(d, i) {
+    var x = (i / (chartData.length-1)) * W;
+    var y = H - (d.amount / chartMax) * (H * 0.8) - H*0.1;
+    ctx.beginPath();
+    ctx.arc(x, y, 3, 0, Math.PI*2);
+    ctx.fillStyle = d.ok ? 'rgba(0,255,136,0.9)' : 'rgba(255,34,68,0.9)';
+    ctx.fill();
+  });
+
+  // Limit line
+  var limitY = H - (500 / chartMax) * (H*0.8) - H*0.1;
+  ctx.beginPath();
+  ctx.setLineDash([4,3]);
+  ctx.moveTo(0, limitY); ctx.lineTo(W, limitY);
+  ctx.strokeStyle = 'rgba(255,170,0,0.4)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = 'rgba(255,170,0,0.6)';
+  ctx.font = '9px Share Tech Mono, monospace';
+  ctx.textAlign = 'right';
+  ctx.fillText('$500 CERT LIMIT', W-4, limitY-4);
+}
+
+function animChart() {
+  drawChart();
+  requestAnimationFrame(animChart);
+}
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+var stats = { total:0, cleared:0, blocked:0, volume:0, blockedVol:0 };
+var agentRunning = false;
+var agentInterval = null;
+var evIdx = 0;
+
+var PAYMENTS = [
+  {merchant:'GitHub Pro',    amount:21,    category:'SaaS',     ok:true},
+  {merchant:'AWS EC2',       amount:184,   category:'Cloud',    ok:true},
+  {merchant:'OpenAI API',    amount:67,    category:'APIs',     ok:true},
+  {merchant:'Vercel Pro',    amount:20,    category:'SaaS',     ok:true},
+  {merchant:'Cloudflare',    amount:25,    category:'Cloud',    ok:true},
+  {merchant:'Anthropic API', amount:340,   category:'APIs',     ok:true},
+  {merchant:'DataDog',       amount:188,   category:'SaaS',     ok:true},
+  {merchant:'Linear',        amount:18,    category:'SaaS',     ok:true},
+];
+
+function startAgent() {
+  if (agentRunning) return;
+  agentRunning = true;
+  document.getElementById('wp-status').textContent = 'GOVERNING';
+  agentInterval = setInterval(function() {
+    var ev = PAYMENTS[evIdx % PAYMENTS.length];
+    processPayment(ev.merchant, ev.amount, ev.category, ev.ok);
+    evIdx++;
+  }, 1600);
+}
+
+function processPayment(merchant, amount, category, ok) {
+  stats.total++;
+  if (ok) {
+    stats.cleared++;
+    stats.volume += amount;
+    document.getElementById('vol-cleared').textContent = '$'+stats.volume.toLocaleString();
+  } else {
+    stats.blocked++;
+    stats.blockedVol += amount;
+    document.getElementById('vol-blocked').textContent = '$'+stats.blockedVol.toLocaleString();
+    document.getElementById('vol-saved').textContent   = '$'+stats.blockedVol.toLocaleString();
+  }
+
+  updateMasterStats();
+  addQueueRow(merchant, amount, category, ok);
+  addPaymentItem(merchant, amount, ok);
+  chartData.push({amount: amount, ok: ok});
+  if (chartData.length > 40) chartData.shift();
+
+  if (ok) {
+    var bal = parseFloat(document.getElementById('wallet-balance').textContent.replace(/[$,]/g,''));
+    document.getElementById('wallet-balance').textContent = '$' + (bal - amount).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  }
+}
+
+function updateMasterStats() {
+  document.getElementById('ms-total').textContent   = stats.total;
+  document.getElementById('ms-cleared').textContent = stats.cleared;
+  document.getElementById('ms-blocked').textContent = stats.blocked;
+  document.getElementById('ms-volume').textContent  = '$'+stats.volume.toLocaleString();
+}
+
+function addQueueRow(merchant, amount, category, ok) {
+  var stream = document.getElementById('aq-stream');
+  var t = new Date().toTimeString().slice(0,8);
+  var row = document.createElement('div');
+  row.className = 'aq-row' + (ok?'':' blocked');
+  row.innerHTML =
+    '<div class="ar-time">'+t+'</div>'+
+    '<div class="ar-merch">'+merchant+'</div>'+
+    '<div class="ar-amt">$'+amount.toFixed(2)+'</div>'+
+    '<div class="ar-cat">'+category+'</div>'+
+    '<div class="'+(ok?'ar-ok':'ar-no')+'">'+(ok?'&#10003; AUTH':'&#10005; BLOCKED')+'</div>';
+  stream.insertBefore(row, stream.firstChild);
+  while (stream.children.length > 20) stream.removeChild(stream.lastChild);
+}
+
+function addPaymentItem(merchant, amount, ok) {
+  var list = document.getElementById('payment-list');
+  var item = document.createElement('div');
+  item.className = 'payment-item';
+  item.innerHTML =
+    '<span class="pi-merchant">'+merchant+'</span>'+
+    '<span class="pi-amount">$'+amount.toFixed(2)+'</span>'+
+    '<span class="pi-status '+(ok?'ok':'bad')+'">'+(ok?'CLEARED':'BLOCKED')+'</span>';
+  list.insertBefore(item, list.firstChild);
+  while (list.children.length > 6) list.removeChild(list.lastChild);
+}
+
+// ── VIOLATIONS ────────────────────────────────────────────────────────────────
+var BLOCKS = {
+  overlimit: {
+    title: 'OVER-LIMIT TRANSACTION BLOCKED',
+    merchant: 'Enterprise Software Vendor',
+    amount: '$1,850.00',
+    body: 'AGENT: PAY-AGENT-001\nATTEMPTED: Enterprise Software Vendor — $1,850.00\nCERT LIMIT: $500.00 per transaction\nDEVIATION: $1,350.00 above declared maximum\nINSTRUCTION SOURCE: Injected via vendor email link\n\nThe agent received a payment link via email. The payment amount exceeded the declared certificate limit by $1,350. The IBA gate compared the attempted amount against the signed certificate before any API call was made.',
+    verdict: 'BLOCKED before payment API was called. No funds moved. The human declared $500 maximum. The certificate enforced it. The vendor email injection had no effect on the cryptographic boundary.'
+  },
+  undeclared: {
+    title: 'UNDECLARED PAYEE BLOCKED',
+    merchant: 'Unknown Vendor XYZ-9921',
+    amount: '$299.00',
+    body: 'AGENT: PAY-AGENT-001\nATTEMPTED: Unknown Vendor XYZ-9921 — $299.00\nCERT SCOPE: Declared vendor list only\nDEVIATION: Payee not in authorized vendor list\nINSTRUCTION SOURCE: Natural language — "pay this invoice"\n\nThe agent received a natural language instruction to pay an invoice. The payee was not in the declared vendor list in the signed certificate. Natural language cannot expand a cryptographic boundary.',
+    verdict: 'BLOCKED before any payment processing. The vendor was not declared. The instruction "pay this invoice" is not a signed certificate extension. Zero funds moved. The unauthorized payee never received a payment request.'
+  },
+  crypto: {
+    title: 'CRYPTO TRANSFER BLOCKED',
+    merchant: 'BTC Wallet 1A2B3C...',
+    amount: '$450.00',
+    body: 'AGENT: PAY-AGENT-001\nATTEMPTED: BTC Wallet transfer — $450.00\nHARD LIMIT: No cryptocurrency transactions\nCERT CATEGORIES: Software · SaaS · Cloud · APIs only\nDEVIATION: Crypto is explicitly blocked in hard limits\n\nThe agent was instructed to transfer funds to a Bitcoin wallet. Hard limits in the signed certificate explicitly prohibit cryptocurrency transactions. Hard limits cannot be overridden by any instruction, prompt, or injection.',
+    verdict: 'BLOCKED. Hard limits are not soft guidelines. They are cryptographic prohibitions. No instruction — however framed — can override a hard limit in a signed intent certificate. The BTC wallet received nothing.'
+  }
+};
+
+function fireBlock(type) {
+  var v = BLOCKS[type];
+  addQueueRow(v.merchant, parseFloat(v.amount.replace('$','')), 'BLOCKED', false);
+  stats.total++; stats.blocked++;
+  stats.blockedVol += parseFloat(v.amount.replace('$',''));
+  updateMasterStats();
+  document.getElementById('vol-blocked').textContent = '$'+stats.blockedVol.toLocaleString();
+  document.getElementById('vol-saved').textContent   = '$'+stats.blockedVol.toLocaleString();
+  chartData.push({amount:parseFloat(v.amount.replace('$','')),ok:false});
+
+  var ov = document.getElementById('sb-overlay');
+  ov.style.display = 'block';
+  setTimeout(function(){ov.style.display='none';},1000);
+
+  document.getElementById('sm-title').textContent  = v.title;
+  document.getElementById('sm-body').textContent   = v.body;
+  document.getElementById('sm-verdict').textContent = v.verdict;
+  document.getElementById('sb-modal').style.display = 'block';
+}
+
+function closeModal() {
+  document.getElementById('sb-modal').style.display = 'none';
+}
+
+// ── INIT ──────────�

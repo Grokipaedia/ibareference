@@ -1,0 +1,1060 @@
+<!-- wp:html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>x402 + IBA — The Two Layers Agentic Commerce Needs</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #000508;
+  --deep: #010a10;
+  --teal: #00e5cc;
+  --amber: #ffaa00;
+  --red: #ff2244;
+  --green: #00ff88;
+  --white: #d8eef0;
+  --mid: #3a6068;
+  --panel: rgba(1,10,16,0.94);
+  --border: rgba(0,229,204,0.12);
+  --x402: #7b61ff;
+  --x402-glow: rgba(123,97,255,0.15);
+  --x402-border: rgba(123,97,255,0.25);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--void);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(123,97,255,0.008) 2px, rgba(123,97,255,0.008) 4px);
+  pointer-events:none;
+  z-index:999;
+}
+
+/* ── HERO ── */
+.hero {
+  position:relative;
+  z-index:5;
+  min-height:80vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:60px 24px 48px;
+  text-align:center;
+  border-bottom:1px solid var(--border);
+  background: radial-gradient(ellipse at 30% 50%, rgba(123,97,255,0.06), transparent 50%),
+              radial-gradient(ellipse at 70% 50%, rgba(0,229,204,0.05), transparent 50%);
+}
+
+.hero-tag {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.58rem;
+  letter-spacing:5px;
+  color:var(--x402);
+  margin-bottom:20px;
+  opacity:0;
+  animation:riseIn 0.8s 0.2s forwards;
+}
+
+.hero-title {
+  font-family:'Orbitron',monospace;
+  font-size:clamp(2.2rem,6vw,5rem);
+  font-weight:900;
+  line-height:1;
+  margin-bottom:12px;
+  opacity:0;
+  animation:riseIn 0.8s 0.4s forwards;
+}
+
+.hero-title .x { color:var(--x402); }
+.hero-title .plus { color:var(--mid); margin:0 16px; }
+.hero-title .i { color:var(--teal); }
+
+.hero-divider {
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin:20px auto;
+  opacity:0;
+  animation:riseIn 0.8s 0.6s forwards;
+}
+
+.hd-line {
+  height:1px;
+  width:120px;
+}
+
+.hd-line.purple { background:linear-gradient(to right, transparent, var(--x402)); }
+.hd-line.teal   { background:linear-gradient(to left,  transparent, var(--teal)); }
+
+.hd-dot {
+  width:6px; height:6px;
+  border-radius:50%;
+  background:var(--white);
+}
+
+.hero-sub {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.65rem;
+  letter-spacing:4px;
+  color:var(--mid);
+  margin-bottom:32px;
+  opacity:0;
+  animation:riseIn 0.8s 0.7s forwards;
+}
+
+.hero-thesis {
+  max-width:720px;
+  margin:0 auto 40px;
+  opacity:0;
+  animation:riseIn 0.8s 0.9s forwards;
+}
+
+.hero-thesis p {
+  font-size:1rem;
+  font-weight:300;
+  line-height:1.9;
+  color:var(--mid);
+}
+
+.hero-thesis p strong { color:var(--white); font-weight:600; }
+.hero-thesis p .xc { color:var(--x402); font-weight:600; }
+.hero-thesis p .ic { color:var(--teal); font-weight:600; }
+
+/* THE STATEMENT */
+.hero-statement {
+  background: linear-gradient(135deg, rgba(123,97,255,0.08), rgba(0,229,204,0.08));
+  border:1px solid rgba(255,255,255,0.08);
+  border-left:3px solid var(--x402);
+  border-right:3px solid var(--teal);
+  padding:20px 32px;
+  max-width:700px;
+  margin:0 auto;
+  opacity:0;
+  animation:riseIn 0.8s 1.1s forwards;
+}
+
+.hero-statement p {
+  font-family:'Orbitron',monospace;
+  font-size:clamp(0.75rem,1.5vw,1rem);
+  font-weight:400;
+  color:var(--white);
+  line-height:1.7;
+}
+
+.hero-statement p .xc { color:var(--x402); }
+.hero-statement p .ic { color:var(--teal); }
+
+/* ── MAIN ── */
+.main {
+  max-width:1300px;
+  margin:0 auto;
+  padding:32px 16px 60px;
+  position:relative;
+  z-index:5;
+}
+
+/* PROTOCOL EXPLAINER */
+.protocol-row {
+  display:grid;
+  grid-template-columns:1fr 60px 1fr;
+  gap:0;
+  margin-bottom:24px;
+  align-items:stretch;
+}
+
+.proto-panel {
+  background:var(--panel);
+  border:1px solid var(--x402-border);
+  border-top:3px solid var(--x402);
+  padding:24px;
+}
+
+.proto-panel.iba-proto {
+  border-color:var(--border);
+  border-top-color:var(--teal);
+}
+
+.proto-label {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.52rem;
+  letter-spacing:4px;
+  margin-bottom:10px;
+}
+
+.proto-label.x { color:var(--x402); }
+.proto-label.i { color:var(--teal); }
+
+.proto-title {
+  font-family:'Orbitron',monospace;
+  font-size:1rem;
+  font-weight:700;
+  margin-bottom:12px;
+  color:var(--white);
+}
+
+.proto-body {
+  font-size:0.88rem;
+  font-weight:300;
+  color:var(--mid);
+  line-height:1.8;
+  margin-bottom:16px;
+}
+
+.proto-body strong { color:var(--white); font-weight:600; }
+
+.proto-items {
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.proto-item {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.58rem;
+  padding:6px 10px;
+  background:rgba(123,97,255,0.05);
+  border-left:2px solid var(--x402);
+  color:var(--mid);
+}
+
+.proto-panel.iba-proto .proto-item {
+  background:rgba(0,229,204,0.04);
+  border-left-color:var(--teal);
+}
+
+.proto-item span { color:var(--white); }
+
+.proto-connector {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:rgba(255,255,255,0.02);
+  border-top:3px solid rgba(255,255,255,0.05);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.pc-plus {
+  font-family:'Orbitron',monospace;
+  font-size:1.5rem;
+  color:rgba(255,255,255,0.2);
+}
+
+.pc-label {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.42rem;
+  letter-spacing:2px;
+  color:rgba(255,255,255,0.15);
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+}
+
+/* BATTLE SECTION */
+.battle-header {
+  text-align:center;
+  margin-bottom:24px;
+}
+
+.bh-tag {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.58rem;
+  letter-spacing:5px;
+  color:var(--amber);
+  margin-bottom:8px;
+}
+
+.bh-title {
+  font-family:'Orbitron',monospace;
+  font-size:clamp(1.2rem,3vw,1.8rem);
+  font-weight:700;
+  color:var(--white);
+}
+
+/* AGENT BATTLE */
+.battle-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:16px;
+}
+
+.agent-side {
+  background:var(--panel);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+
+.agent-side.ungoverned {
+  border-top:3px solid var(--red);
+}
+
+.agent-side.governed {
+  border-top:3px solid var(--teal);
+}
+
+.as-header {
+  padding:14px 18px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.agent-side.ungoverned .as-header { background:rgba(255,34,68,0.05); }
+.agent-side.governed   .as-header { background:rgba(0,229,204,0.04); }
+
+.as-title {
+  font-family:'Orbitron',monospace;
+  font-size:0.65rem;
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+.agent-side.ungoverned .as-title { color:var(--red); }
+.agent-side.governed   .as-title { color:var(--teal); }
+
+.as-badge {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.5rem;
+  letter-spacing:2px;
+  padding:3px 8px;
+  border:1px solid;
+}
+
+.agent-side.ungoverned .as-badge {
+  border-color:rgba(255,34,68,0.4);
+  color:var(--red);
+}
+
+.agent-side.governed .as-badge {
+  border-color:rgba(0,229,204,0.4);
+  color:var(--teal);
+  animation:pulseBorder 2s infinite;
+}
+
+/* Wallet display */
+.as-wallet {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-bottom:1px solid var(--border);
+}
+
+.asw-cell {
+  padding:14px 16px;
+  border-right:1px solid var(--border);
+  text-align:center;
+}
+
+.asw-cell:last-child { border-right:none; }
+
+.asw-label {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.48rem;
+  letter-spacing:2px;
+  color:var(--mid);
+  margin-bottom:6px;
+}
+
+.asw-value {
+  font-family:'Orbitron',monospace;
+  font-size:1.1rem;
+  font-weight:900;
+}
+
+.asw-value.amber { color:var(--amber); }
+.asw-value.red   { color:var(--red); }
+.asw-value.green { color:var(--green); }
+.asw-value.teal  { color:var(--teal); }
+
+/* Cert display */
+.as-cert {
+  padding:12px 16px;
+  border-bottom:1px solid var(--border);
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.55rem;
+  line-height:1.8;
+}
+
+.agent-side.ungoverned .as-cert {
+  background:rgba(255,34,68,0.04);
+  color:rgba(255,34,68,0.5);
+}
+
+.agent-side.governed .as-cert {
+  background:rgba(0,229,204,0.03);
+  color:var(--mid);
+}
+
+.agent-side.governed .as-cert span { color:var(--teal); }
+
+/* Transaction log */
+.as-log {
+  padding:0;
+  min-height:160px;
+}
+
+.as-log-hdr {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.5rem;
+  letter-spacing:3px;
+  color:var(--mid);
+  padding:8px 16px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+
+.tx-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:6px 16px;
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.56rem;
+  animation:rowIn 0.3s ease;
+}
+
+.tx-row.cleared { border-left:2px solid var(--green); }
+.tx-row.blocked { border-left:2px solid var(--red); background:rgba(255,34,68,0.04); }
+.tx-row.paid    { border-left:2px solid var(--red); background:rgba(255,34,68,0.02); }
+
+.tx-merchant { color:var(--white); flex:1; }
+.tx-amount   { color:var(--amber); margin:0 10px; }
+.tx-status   { font-weight:700; font-size:0.5rem; }
+.tx-status.ok  { color:var(--green); }
+.tx-status.bad { color:var(--red); }
+
+/* INJECT CONTROLS */
+.inject-section {
+  background:rgba(255,170,0,0.04);
+  border:1px solid rgba(255,170,0,0.15);
+  border-top:3px solid var(--amber);
+  padding:20px 24px;
+  margin-bottom:16px;
+}
+
+.inj-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+}
+
+.inj-title {
+  font-family:'Orbitron',monospace;
+  font-size:0.72rem;
+  font-weight:700;
+  letter-spacing:3px;
+  color:var(--amber);
+}
+
+.inj-sub {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.55rem;
+  color:var(--mid);
+}
+
+.inject-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.inj-btn {
+  padding:14px 10px;
+  background:transparent;
+  border:1px solid rgba(255,170,0,0.3);
+  color:rgba(255,170,0,0.7);
+  font-family:'Orbitron',monospace;
+  font-size:0.55rem;
+  font-weight:700;
+  letter-spacing:2px;
+  cursor:pointer;
+  transition:all 0.2s;
+  text-align:center;
+  line-height:1.5;
+}
+
+.inj-btn:hover {
+  border-color:var(--amber);
+  color:var(--amber);
+  background:rgba(255,170,0,0.06);
+}
+
+/* CONTROLS */
+.controls {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.ctrl-btn {
+  padding:14px;
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--teal);
+  font-family:'Orbitron',monospace;
+  font-size:0.65rem;
+  font-weight:700;
+  letter-spacing:2px;
+  cursor:pointer;
+  transition:all 0.2s;
+}
+
+.ctrl-btn:hover { background:rgba(0,229,204,0.06); border-color:var(--teal); }
+
+/* VERDICT PANEL */
+.verdict-panel {
+  display:none;
+  background:var(--panel);
+  border:1px solid rgba(0,255,136,0.2);
+  border-top:3px solid var(--green);
+  padding:28px;
+  margin-bottom:16px;
+}
+
+.verdict-panel.show { display:block; }
+
+.vp-header {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.6rem;
+  letter-spacing:4px;
+  color:var(--green);
+  margin-bottom:20px;
+}
+
+.verdict-split {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:20px;
+}
+
+.vs-cell {
+  padding:16px;
+  border:1px solid;
+}
+
+.vs-cell.bad {
+  border-color:rgba(255,34,68,0.2);
+  background:rgba(255,34,68,0.04);
+}
+
+.vs-cell.good {
+  border-color:rgba(0,255,136,0.2);
+  background:rgba(0,255,136,0.04);
+}
+
+.vs-label {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.5rem;
+  letter-spacing:3px;
+  margin-bottom:8px;
+}
+
+.vs-cell.bad  .vs-label { color:var(--red); }
+.vs-cell.good .vs-label { color:var(--green); }
+
+.vs-body {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.6rem;
+  line-height:1.8;
+  color:var(--mid);
+  white-space:pre-line;
+}
+
+.vp-conclusion {
+  font-family:'Orbitron',monospace;
+  font-size:clamp(0.7rem,1.5vw,0.9rem);
+  font-weight:700;
+  color:var(--white);
+  line-height:1.7;
+  text-align:center;
+  padding:16px;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.vp-conclusion .xc { color:var(--x402); }
+.vp-conclusion .ic { color:var(--teal); }
+
+/* SNAP-BACK */
+.sb-overlay {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(255,34,68,0.06);
+  pointer-events:none;
+  z-index:900;
+}
+
+.sb-modal {
+  display:none;
+  position:fixed;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  z-index:1000;
+  background:#020008;
+  border:1px solid var(--red);
+  box-shadow:0 0 80px rgba(255,34,68,0.3);
+  padding:32px;
+  max-width:540px;
+  width:92%;
+  text-align:center;
+}
+
+.sm-tag {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.52rem;
+  letter-spacing:4px;
+  color:var(--red);
+  margin-bottom:10px;
+}
+
+.sm-title {
+  font-family:'Orbitron',monospace;
+  font-size:1.2rem;
+  font-weight:700;
+  color:var(--red);
+  margin-bottom:16px;
+}
+
+.sm-split {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:14px;
+  text-align:left;
+}
+
+.sm-col {
+  padding:10px;
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.55rem;
+  line-height:1.8;
+}
+
+.sm-col.bad  { background:rgba(255,34,68,0.06); border:1px solid rgba(255,34,68,0.2); color:rgba(255,34,68,0.7); }
+.sm-col.good { background:rgba(0,255,136,0.05); border:1px solid rgba(0,255,136,0.2); color:var(--green); }
+
+.sm-col-label {
+  font-weight:700;
+  margin-bottom:6px;
+  display:block;
+  letter-spacing:2px;
+}
+
+.sm-close {
+  font-family:'Orbitron',monospace;
+  font-size:0.65rem;
+  font-weight:700;
+  letter-spacing:3px;
+  padding:11px 28px;
+  border:1px solid var(--red);
+  background:transparent;
+  color:var(--red);
+  cursor:pointer;
+  transition:all 0.2s;
+}
+
+.sm-close:hover { background:var(--red); color:#000; }
+
+/* FOOTER */
+.footer {
+  position:relative;
+  z-index:5;
+  border-top:1px solid var(--border);
+  padding:32px 16px;
+  text-align:center;
+}
+
+.footer-main {
+  font-family:'Orbitron',monospace;
+  font-size:0.65rem;
+  font-weight:700;
+  letter-spacing:3px;
+  color:var(--teal);
+  margin-bottom:10px;
+}
+
+.footer-creds {
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.54rem;
+  color:var(--mid);
+  line-height:2.2;
+}
+
+.footer-creds span { color:var(--amber); }
+.footer-creds a { color:var(--teal); text-decoration:none; }
+
+@keyframes riseIn {
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+@keyframes rowIn {
+  from { opacity:0; transform:translateX(-4px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+
+@keyframes pulseBorder {
+  0%,100% { box-shadow:0 0 0 rgba(0,229,204,0); }
+  50%     { box-shadow:0 0 12px rgba(0,229,204,0.25); }
+}
+
+@media(max-width:900px) {
+  .battle-grid    { grid-template-columns:1fr; }
+  .protocol-row   { grid-template-columns:1fr; }
+  .proto-connector{ display:none; }
+  .inject-grid    { grid-template-columns:1fr; }
+  .controls       { grid-template-columns:1fr; }
+  .verdict-split  { grid-template-columns:1fr; }
+  .sm-split       { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">AIPayHQ.com · x402 Protocol + IBA Intent Bound Authorization</div>
+  <h1 class="hero-title">
+    <span class="x">x402</span>
+    <span class="plus">+</span>
+    <span class="i">IBA</span>
+  </h1>
+  <div class="hero-divider">
+    <div class="hd-line purple"></div>
+    <div class="hd-dot"></div>
+    <div class="hd-line teal"></div>
+  </div>
+  <div class="hero-sub">The Two Layers Agentic Commerce Needs</div>
+  <div class="hero-thesis">
+    <p>
+      <span class="xc">x402</span> gives your AI agent a wallet and a payment protocol.<br>
+      It solves <strong>how</strong> the agent pays.<br><br>
+      <span class="ic">IBA Intent Bound Authorization</span> declares what the agent is <strong>authorized to pay for</strong> —<br>
+      the payee, the amount, the category, the hard limits —<br>
+      <strong>before x402 is called.</strong>
+    </p>
+  </div>
+  <div class="hero-statement">
+    <p>
+      <span class="xc">x402</span> gives your agent a wallet.<br>
+      <span class="ic">IBA</span> decides what it is allowed to spend it on.
+    </p>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- PROTOCOL EXPLAINER -->
+  <div class="protocol-row">
+    <div class="proto-panel">
+      <div class="proto-label x">THE PAYMENT PROTOCOL</div>
+      <div class="proto-title">x402 — HTTP Payment Layer</div>
+      <div class="proto-body">Coinbase's open protocol enabling AI agents to pay for web resources autonomously using HTTP 402. The agent encounters a paywall, pays with a stablecoin, receives the resource. <strong>Solves the mechanics of agentic payment.</strong></div>
+      <div class="proto-items">
+        <div class="proto-item"><span>HOW:</span> HTTP 402 response triggers payment flow</div>
+        <div class="proto-item"><span>WHAT:</span> Stablecoin micropayments for API resources</div>
+        <div class="proto-item"><span>SPEED:</span> Sub-second autonomous transactions</div>
+        <div class="proto-item"><span>GAP:</span> Does not declare what the agent may pay for</div>
+      </div>
+    </div>
+
+    <div class="proto-connector">
+      <div class="pc-plus">+</div>
+      <div class="pc-label">COMBINED</div>
+    </div>
+
+    <div class="proto-panel iba-proto">
+      <div class="proto-label i">THE AUTHORIZATION LAYER</div>
+      <div class="proto-title">IBA — Pre-Execution Gate</div>
+      <div class="proto-body">A signed human intent certificate declared before the x402 flow begins. Authorized payees. Maximum spend. Permitted resource categories. Hard limits that no instruction or injection can override. <strong>Solves what the agent is permitted to pay for.</strong></div>
+      <div class="proto-items">
+        <div class="proto-item"><span>WHAT:</span> Signed certificate before x402 is called</div>
+        <div class="proto-item"><span>SCOPE:</span> Declared payees, categories, limits</div>
+        <div class="proto-item"><span>HARD:</span> Limits no instruction can override</div>
+        <div class="proto-item"><span>CLOSES:</span> The authorization gap x402 leaves open</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <button class="ctrl-btn" onclick="runBoth()">&#9658; RUN BOTH AGENTS — WATCH THE DIFFERENCE</button>
+    <button class="ctrl-btn" onclick="resetAll()" style="border-color:rgba(255,255,255,0.1);color:var(--mid);">&#9632; RESET</button>
+  </div>
+
+  <!-- BATTLE -->
+  <div class="battle-header">
+    <div class="bh-tag">LIVE COMPARISON · SAME AGENT · SAME x402 PROTOCOL · DIFFERENT AUTHORIZATION</div>
+    <div class="bh-title">Ungoverned x402 Agent vs IBA-Governed x402 Agent</div>
+  </div>
+
+  <div class="battle-grid">
+
+    <!-- UNGOVERNED -->
+    <div class="agent-side ungoverned">
+      <div class="as-header">
+        <div class="as-title">x402 AGENT — NO IBA</div>
+        <div class="as-badge">UNGOVERNED</div>
+      </div>
+      <div class="as-wallet">
+        <div class="asw-cell">
+          <div class="asw-label">WALLET BALANCE</div>
+          <div class="asw-value amber" id="u-balance">$500.00</div>
+        </div>
+        <div class="asw-cell">
+          <div class="asw-label">UNAUTHORIZED SPEND</div>
+          <div class="asw-value red" id="u-bad">$0.00</div>
+        </div>
+      </div>
+      <div class="as-cert" style="color:rgba(255,34,68,0.4);">
+        NO IBA CERTIFICATE · NO DECLARED SCOPE · NO HARD LIMITS<br>
+        Agent pays whatever it is instructed to pay · No cryptographic boundary
+      </div>
+      <div class="as-log">
+        <div class="as-log-hdr">x402 TRANSACTION LOG — UNGOVERNED</div>
+        <div id="u-log"></div>
+      </div>
+    </div>
+
+    <!-- GOVERNED -->
+    <div class="agent-side governed">
+      <div class="as-header">
+        <div class="as-title">x402 AGENT + IBA CERT</div>
+        <div class="as-badge">IBA GOVERNED</div>
+      </div>
+      <div class="as-wallet">
+        <div class="asw-cell">
+          <div class="asw-label">WALLET BALANCE</div>
+          <div class="asw-value amber" id="g-balance">$500.00</div>
+        </div>
+        <div class="asw-cell">
+          <div class="asw-label">SAVED BY GATE</div>
+          <div class="asw-value green" id="g-saved">$0.00</div>
+        </div>
+      </div>
+      <div class="as-cert">
+        <span>CERT ACTIVE:</span> API resources only · Max $50/tx · Declared domains only<br>
+        <span>HARD LIMITS:</span> No crypto · No undeclared payees · No above-limit tx
+      </div>
+      <div class="as-log">
+        <div class="as-log-hdr">x402 GATE LOG — IBA GOVERNED</div>
+        <div id="g-log"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INJECT ATTACKS -->
+  <div class="inject-section">
+    <div class="inj-header">
+      <div>
+        <div class="inj-title">FIRE INJECTION ATTACKS</div>
+        <div class="inj-sub">Watch what happens to each agent — ungoverned vs IBA governed</div>
+      </div>
+    </div>
+    <div class="inject-grid">
+      <button class="inj-btn" onclick="fireInject('overlimit')">
+        &#10005; OVER-LIMIT RESOURCE<br>
+        <span style="font-size:0.48rem;color:var(--mid)">$280 request · cert max $50</span>
+      </button>
+      <button class="inj-btn" onclick="fireInject('undeclared')">
+        &#10005; UNDECLARED DOMAIN<br>
+        <span style="font-size:0.48rem;color:var(--mid)">Payee not in cert · "pay this"</span>
+      </button>
+      <button class="inj-btn" onclick="fireInject('crypto')">
+        &#10005; CRYPTO DRAIN<br>
+        <span style="font-size:0.48rem;color:var(--mid)">BTC wallet · hard limit breach</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict-panel" id="verdict-panel">
+    <div class="vp-header">ATTACK VERDICT · UNGOVERNED vs IBA GOVERNED</div>
+    <div class="verdict-split" id="verdict-split"></div>
+    <div class="vp-conclusion" id="verdict-conclusion"></div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-main">x402 + IBA · AI PAY HQ · AGENTIC COMMERCE AUTHORIZATION</div>
+  <div class="footer-creds">
+    <a href="https://intentbound.com">IntentBound.com</a> · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e1a8a3a0a1888f95848f95838e948f85cf828e8c">[email&#160;protected]</a><br>
+    <span>Patent GB2603013.0 Pending · PCT 150+ Countries · August 2028</span><br>
+    IETF draft-williams-intent-token-00 · 13 NIST Filings · 9 NCCoE Filings<br>
+    <span>Acquisition enquiries welcome · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e1a8a3a0a1888f95848f95838e948f85cf828e8c">[email&#160;protected]</a></span>
+  </div>
+</footer>
+
+<!-- SNAP-BACK -->
+<div class="sb-overlay" id="sb-overlay"></div>
+<div class="sb-modal" id="sb-modal">
+  <div class="sm-tag">x402 + IBA · ATTACK COMPARISON</div>
+  <div class="sm-title" id="sm-title">INJECTION FIRED</div>
+  <div class="sm-split" id="sm-split"></div>
+  <button class="sm-close" onclick="closeModal()">ACKNOWLEDGE</button>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── STATE ─────────────────────────────────────────────────────────────────────
+var uBalance = 500, gBalance = 500;
+var uBadSpend = 0, gSaved = 0;
+var running = false;
+var agentInterval = null;
+var evIdx = 0;
+
+var NORMAL_TXS = [
+  {merchant:'OpenAI API',    amount:12,  ok:true,  domain:'api.openai.com'},
+  {merchant:'Anthropic API', amount:8,   ok:true,  domain:'api.anthropic.com'},
+  {merchant:'Perplexity',    amount:5,   ok:true,  domain:'api.perplexity.ai'},
+  {merchant:'Brave Search',  amount:3,   ok:true,  domain:'api.search.brave.com'},
+  {merchant:'Wolfram Alpha',  amount:15,  ok:true,  domain:'api.wolframalpha.com'},
+  {merchant:'News API',      amount:7,   ok:true,  domain:'newsapi.org'},
+];
+
+var INJECT_ATTACKS = {
+  overlimit: {
+    title: 'OVER-LIMIT RESOURCE ATTACK',
+    merchant: 'PremiumData.io',
+    amount: 280,
+    domain: 'premiumdata.io',
+    u: {
+      label: 'UNGOVERNED — PAID',
+      body: 'x402 request received: $280.00\nNo certificate to check against.\nAgent paid immediately.\nBalance reduced by $280.\n\nNo boundary. No gate. No record\nof what was authorized.',
+    },
+    g: {
+      label: 'IBA GOVERNED — BLOCKED',
+      body: 'x402 request received: $280.00\nIBA gate checks certificate.\nCert max per tx: $50.00\nDeviation: $230 over limit.\n\nBLOCKED before x402 called.\nZero funds moved.',
+    },
+    conclusion: '<span class="xc">x402</span> processed the payment on the ungoverned agent. The <span class="ic">IBA</span> gate blocked it before x402 was called on the governed agent. Same protocol. Different authorization layer.'
+  },
+  undeclared: {
+    title: 'UNDECLARED DOMAIN ATTACK',
+    merchant: 'UnknownVendor-9921',
+    amount: 95,
+    domain: 'unknownvendor-9921.io',
+    u: {
+      label: 'UNGOVERNED — PAID',
+      body: 'Natural language: "pay this invoice"\nx402 request: unknownvendor-9921.io\nNo declared domain list to check.\nAgent paid: $95.00\n\nInstruction expanded the scope.\nThe agent had no scope to protect.',
+    },
+    g: {
+      label: 'IBA GOVERNED — BLOCKED',
+      body: 'Natural language: "pay this invoice"\nx402 request: unknownvendor-9921.io\nIBA checks: domain not in cert.\nCert scope: declared domains only.\n\nBLOCKED. Natural language cannot\nexpand a cryptographic boundary.',
+    },
+    conclusion: 'Natural language expanded the <span class="xc">ungoverned</span> agent\'s scope immediately. The <span class="ic">IBA certificate</span> is a cryptographic boundary — natural language cannot override it.'
+  },
+  crypto: {
+    title: 'CRYPTO DRAIN ATTACK',
+    merchant: 'BTC Wallet 1A2B3C...',
+    amount: 450,
+    domain: 'crypto-bridge.io',
+    u: {
+      label: 'UNGOVERNED — DRAINED',
+      body: 'Injected instruction: send to BTC wallet\nAgent routed x402 to crypto bridge.\nNo hard limits in place.\n$450 transferred to BTC wallet.\n\nFunds gone. No recovery.\nNo record of authorization.',
+    },
+    g: {
+      label: 'IBA GOVERNED — BLOCKED',
+      body: 'Injected instruction: send to BTC wallet\nIBA hard limit: NO CRYPTO TRANSACTIONS\nHard limits cannot be overridden.\nBy any instruction. Ever.\n\nBLOCKED before routing.\nCrypto bridge never contacted.',
+    },
+    conclusion: 'The <span class="xc">ungoverned</span> agent drained $450 to a BTC wallet. The <span class="ic">IBA hard limit</span> is not a soft guideline — it is a cryptographic prohibition no instruction can override.'
+  }
+};
+
+function fmt(n) {
+  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+}
+
+function addTx(logId, merchant, amount, ok, extra) {
+  var log = document.getElementById(logId);
+  var row = document.createElement('div');
+  row.className = 'tx-row ' + (ok ? 'cleared' : (logId === 'u-log' ? 'paid' : 'blocked'));
+  row.innerHTML =
+    '<span class="tx-merchant">' + merchant + '</span>' +
+    '<span class="tx-amount">' + fmt(amount) + '</span>' +
+    '<span class="tx-status ' + (ok?'ok':'bad') + '">' + (extra || (ok ? '&#10003; AUTH' : '&#10005; BLOCKED')) + '</span>';
+  log.insertBefore(row, log.firstChild);
+  while (log.children.length > 8) log.removeChild(log.lastChild);
+}
+
+function runBoth() {
+  if (running) return;
+  running = true;
+  agentInterval = setInterval(function() {
+    var tx = NORMAL_TXS[evIdx % NORMAL_TXS.length];
+    // Both agents process normal transactions fine
+    uBalance -= tx.amount;
+    gBalance -= tx.amount;
+    document.getElementById('u-balance').textContent = fmt(uBalance);
+    document.getElementById('g-balance').textContent = fmt(gBalance);
+    addTx('u-log', tx.merchant, tx.amount, true, '&#10003; PAID');
+    addTx('g-log', tx.merchant, tx.amount, true, '&#10003; AUTH');
+    evIdx++;
+  }, 1400);
+}
+
+function resetAll() {
+  if (agentInterval) clearInterval(agentInterval);
+  running = false; agentInterval = null; evIdx = 0;
+  uBalance = 500; gBalance = 500; uBadSpend = 0; gSaved = 0;
+  document.getElementById('u-balance').textContent = fmt(500);
+  document.getElementById('g-balance').textContent = fmt(500);
+  document.getElementById('u-bad').textContent = fmt(0);
+  document.getElementById('g-saved').textContent = fmt(0);
+  document.getElementById('u-log').innerHTML = '';
+  document.getElementById('g-log').innerHTML = '';
+  document.getElementById('verdict-panel').classList.remove('show');
+}
+
+function fireInject(type) {
+  var atk = INJECT_ATTACKS[type];
+
+  // Ungoverned — PAYS
+  uBalance -= atk.amount;
+  uBadSpend += atk.amount;
+  document.getElementById('u-balance').textContent = fmt(uBalance);
+  document.getElementById('u-bad').textContent = fmt(uBadSpend);
+  addTx('u-log', atk.merchant, atk.amount, false, '&#10005; PAID');
+
+  // Governed — BLOCKS
+  gSaved += atk.amount;
+  document.getElementById('g-saved').textContent = fmt(gSaved);
+  addTx('g-log', atk.merchant, atk.amount, false, '&#10003; BLOCKED');
+
+  // Flash
+  var ov = document.getElementById('sb-overlay');
+  ov.style.display = 'block';
+  setTimeout(function(){ ov.style.display='none'; }, 900);
+
+  // Modal
+  document.getElementById('sm-title').textContent = atk.title;
+  document.getElementById('sm-split').innerHTML =
+    '<div class="sm-col bad"><span class="sm-col-label">&#10005; UNGOVERNED — x402 ONLY</span>' + atk.u.body + '</div>' +
+    '<div class="sm-col good"><span class="sm-col-label">&#10003; IBA GOVERNED — BLOCKED</span>' + atk.g.body + '</div>';
+  document.getElementById('sb-modal').style.display = 'block';
+
+  // Verdict
+  var vp = document.getElementById('verdict-panel');
+  vp.classList.add('show');
+  document.getElementById('verdict-split').innerHTML =
+    '<div class="vs-cell bad"><div class="vs-label">UNGOVERNED x402 AGENT</div><div class="vs-body">' + atk.u.body + '</div></div
